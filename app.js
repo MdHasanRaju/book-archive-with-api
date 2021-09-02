@@ -7,7 +7,6 @@ const searchResult = () => {
   console.log(searchText);
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
 
-
   fetch(url)
     .then((res) => res.json())
     .then((data) => loadSearchedData(data.docs));
@@ -16,8 +15,6 @@ const searchResult = () => {
 const loadSearchedData = (books) => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
-  
-  console.log(books);
 
   // all validation case
   const msg = [
@@ -81,4 +78,6 @@ const loadSearchedData = (books) => {
       booksContainer.appendChild(div);
     }
   });
+  searchField.value = '';
 };
+
