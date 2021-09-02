@@ -4,7 +4,6 @@ const searchResult = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
-  console.log(searchText);
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
 
   fetch(url)
@@ -37,17 +36,20 @@ const loadSearchedData = (books) => {
   const booksContainer = document.getElementById("books");
   booksContainer.textContent = "";
   books.forEach((book) => {
-    if (book.cover_i) {
+
+    const coverImg = 
+      book.cover_i
+        ? "https://covers.openlibrary.org/b/id/" + book.cover_i + "-M.jpg"
+        : "https://covers.openlibrary.org/b/id/10909258-M.jpg";
+    
       const div = document.createElement("div");
       div.innerHTML = `
         <div class="col">
           <div class="card h-100">
-            <img height="250px" src="https://covers.openlibrary.org/b/id/${
-              book.cover_i
-            }-M.jpg" class="card-img-top" alt="...">
+            <img height="250px" src="${coverImg}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">Title: ${book.title}</h5>
-                <p class="card-title">Author: ${book.author_name}</p>
+                <h5 class="card-title text-primary">${book.title}</h5>
+                <p class="card-title">Author: ${book.author_name ? book.author_name:''}</p>
                 <p class="card-text">Publisher: ${book.publisher}</p>
                 <P>Release date: ${
                   book.first_publish_year ? book.first_publish_year : ""
@@ -57,26 +59,6 @@ const loadSearchedData = (books) => {
         </div>
         `;
       booksContainer.appendChild(div);
-    }else {
-      const div = document.createElement("div");
-      div.innerHTML = `
-        <div class="col">
-          <div class="card h-100">
-            <img height="250px" src="https://covers.openlibrary.org/b/id/10909258-M.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Title: ${book.title}</h5>
-                <p class="card-title">Author:  ${
-                  book.author_name ? book.author_name : ""}</p>
-                <p class="card-text">Publisher: ${book.publisher}</p>
-                <P>Release date: ${
-                  book.first_publish_year ? book.first_publish_year : ""
-                }</p>
-            </div>
-          </div>
-        </div>
-        `;
-      booksContainer.appendChild(div);
-    }
   });
 
 /* search field clear */
