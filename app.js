@@ -16,7 +16,7 @@ const loadSearchedData = (books) => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
-  // all validation case
+  // validations case including searched length
   const msg = [
     "No result found",
     "Total result found:",
@@ -57,7 +57,7 @@ const loadSearchedData = (books) => {
         </div>
         `;
       booksContainer.appendChild(div);
-    }else{
+    }else {
       const div = document.createElement("div");
       div.innerHTML = `
         <div class="col">
@@ -78,6 +78,8 @@ const loadSearchedData = (books) => {
       booksContainer.appendChild(div);
     }
   });
+
+/* search field clear */
   searchField.value = '';
 };
 
