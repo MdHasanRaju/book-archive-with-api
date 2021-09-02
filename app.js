@@ -1,5 +1,4 @@
 const searchResult = () => {
-
   /* search-field */
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
@@ -15,11 +14,11 @@ const loadSearchedData = (books) => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
-  // validations case including searched length
+  // validation case including searched length
   const msg = [
     "No result found",
     "Total result found:",
-    "Search field must not be empty"
+    "Search field must be filled with a book name"
   ];
 
   const result =
