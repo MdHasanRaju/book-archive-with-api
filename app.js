@@ -7,6 +7,7 @@ const searchResult = () => {
   console.log(searchText);
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
 
+
   fetch(url)
     .then((res) => res.json())
     .then((data) => loadSearchedData(data.docs));
@@ -15,13 +16,14 @@ const searchResult = () => {
 const loadSearchedData = (books) => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
+  
   console.log(books);
 
-  // all warning case
+  // all validation case
   const msg = [
     "No result found",
     "Total result found:",
-    "Search field must not be empty",
+    "Search field must not be empty"
   ];
 
   const result =
@@ -67,8 +69,7 @@ const loadSearchedData = (books) => {
             <div class="card-body">
                 <h5 class="card-title">Title: ${book.title}</h5>
                 <p class="card-title">Author:  ${
-                  book.author_name ? book.author_name : ""
-                }</p>
+                  book.author_name ? book.author_name : ""}</p>
                 <p class="card-text">Publisher: ${book.publisher}</p>
                 <P>Release date: ${
                   book.first_publish_year ? book.first_publish_year : ""
@@ -79,6 +80,5 @@ const loadSearchedData = (books) => {
         `;
       booksContainer.appendChild(div);
     }
-    
   });
 };
